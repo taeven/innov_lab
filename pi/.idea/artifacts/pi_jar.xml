@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="pi:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/pi_jar</output-path>
+    <root id="archive" name="pi.jar">
+      <element id="module-output" name="pi" />
+      <element id="extracted-dir" path="C:/inovLab/mysql-connector-java-5.1.41-bin.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/old dwnloads/pi4j-1.1/lib/pi4j-core.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
