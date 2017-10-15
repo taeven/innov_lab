@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane translateX="1.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adminView.Controller">
+   <children>
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+         <center>
+            <TabPane fx:id="tabContainer" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab text="chceck in/out">
+                     <content>
+                        <ListView fx:id="listView" />
+                     </content>
+                  </Tab>
+                  <Tab text="search">
+                    <content>
+                      <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <ListView fx:id="listViewSearch" layoutY="32.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+                                 <padding>
+                                    <Insets top="15.0" />
+                                 </padding></ListView>
+                              <TextField fx:id="username" layoutX="100.0" layoutY="6.0" onAction="#onSearch" prefHeight="25.0" prefWidth="331.0" />
+                              <Label layoutX="30.0" layoutY="6.0" text="Username" />
+                              <Button fx:id="search" layoutX="457.0" layoutY="6.0" mnemonicParsing="false" onAction="#onSearch" text="search" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="users">
+                    <content>
+                      <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label layoutX="167.0" layoutY="74.0" text="Username: " />
+                              <Button fx:id="enroll" layoutX="241.0" layoutY="160.0" mnemonicParsing="false" onAction="#enrollUser" text="Enroll user" />
+                              <Label layoutX="167.0" layoutY="123.0" text="Password: " />
+                              <PasswordField fx:id="passwordField" layoutX="241.0" layoutY="119.0" onAction="#enrollUser" />
+                              <TextField fx:id="userField" layoutX="241.0" layoutY="70.0" />
+                              <Label fx:id="status" layoutX="263.0" layoutY="224.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+         <bottom>
+            <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <items>
+                  <Button mnemonicParsing="false" onAction="#onRefresh" text="Refresh" />
+                <Button mnemonicParsing="false" onAction="#onNext" text="Next" />
+                  <Button mnemonicParsing="false" onAction="#onPrev" text="Previous" />
+              </items>
+            </ToolBar>
+         </bottom></BorderPane>
+   </children>
+</AnchorPane>

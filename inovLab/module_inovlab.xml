@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_inovlab" default="compile.module.inovlab">
+  <dirname property="module.inovlab.basedir" file="${ant.file.module_inovlab}"/>
+  
+  <property name="module.jdk.home.inovlab" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.inovlab" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.inovlab" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.inovlab" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="inovlab.output.dir" value="${module.inovlab.basedir}/out/production/inovLab"/>
+  <property name="inovlab.testoutput.dir" value="${module.inovlab.basedir}/out/test/inovLab"/>
+  
+  <path id="inovlab.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="inovlab.module.production.classpath">
+    <path refid="${module.jdk.classpath.inovlab}"/>
+    <pathelement location="${basedir}/mysql-connector-java-5.1.41-bin.jar"/>
+  </path>
+  
+  <path id="inovlab.runtime.production.module.classpath">
+    <pathelement location="${inovlab.output.dir}"/>
+    <pathelement location="${basedir}/mysql-connector-java-5.1.41-bin.jar"/>
+  </path>
+  
+  <path id="inovlab.module.classpath">
+    <path refid="${module.jdk.classpath.inovlab}"/>
+    <pathelement location="${inovlab.output.dir}"/>
+    <pathelement location="${basedir}/mysql-connector-java-5.1.41-bin.jar"/>
+  </path>
+  
+  <path id="inovlab.runtime.module.classpath">
+    <pathelement location="${inovlab.testoutput.dir}"/>
+    <pathelement location="${inovlab.output.dir}"/>
+    <pathelement location="${basedir}/mysql-connector-java-5.1.41-bin.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.inovlab">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.inovlab">
+    <patternset refid="excluded.from.module.inovlab"/>
+  </patternset>
+  
+  <path id="inovlab.module.sourcepath">
+    <dirset dir="${module.inovlab.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.inovlab" depends="compile.module.inovlab.production,compile.module.inovlab.tests" description="Compile module inovLab"/>
+  
+  <target name="compile.module.inovlab.production" depends="register.custom.compilers" description="Compile module inovLab; production classes">
+    <mkdir dir="${inovlab.output.dir}"/>
+    <javac2 destdir="${inovlab.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.inovlab}/javac">
+      <compilerarg line="${compiler.args.inovlab}"/>
+      <bootclasspath refid="inovlab.module.bootclasspath"/>
+      <classpath refid="inovlab.module.production.classpath"/>
+      <src refid="inovlab.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.inovlab"/>
+    </javac2>
+    
+    <copy todir="${inovlab.output.dir}">
+      <fileset dir="${module.inovlab.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.inovlab.tests" depends="register.custom.compilers,compile.module.inovlab.production" description="compile module inovLab; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.inovlab" description="cleanup module">
+    <delete dir="${inovlab.output.dir}"/>
+    <delete dir="${inovlab.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+
+      <TextField id="username" fx:id="username" layoutX="103.0" layoutY="35.0" onAction="#user_clicked" />
+      <Label layoutX="23.0" layoutY="40.0" text="Username:" />
+   <PasswordField id="Password" fx:id="password" layoutX="103.0" layoutY="74.0" onAction="#perform_login" />
+   <Label layoutX="26.0" layoutY="79.0" text="Password:" />
+   <ProgressBar fx:id="progress" layoutX="50.0" layoutY="153.0" prefWidth="200.0" visible="false" />
+   <Button id="loginButton" fx:id="login_but" layoutX="119.0" layoutY="113.0" mnemonicParsing="false" onAction="#perform_login" text="Login" />
+  
+</AnchorPane>
